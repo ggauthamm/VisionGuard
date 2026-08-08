@@ -147,5 +147,6 @@ Add screenshots of:
 ## Contributors
 
 - [Bharath C](https://github.com/BharathC050903)
+- [Gautham](https://github.com/ggauthamm)
 
 ---

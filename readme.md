@@ -1,13 +1,20 @@
+# VisionGuard: AI-Based Diabetic Retinopathy Detection
+
+A web application that classifies the severity of diabetic retinopathy from retinal fundus images using a deep learning model, served through a Flask REST API.
+
+> **Disclaimer:** This project is for educational and research purposes only. It is not a medical device and must not be used for clinical diagnosis.
+
 ## Table of Contents
 
 - [Description](#description)
+- [Results](#results)
 - [Technologies Used](#technologies-used)
 - [Dataset](#dataset)
-- [Installation Instructions](#installation-instructions)
+- [Model Details](#model-details)
+- [Installation](#installation)
 - [Project Structure](#project-structure)
 - [How to Run](#how-to-run)
 - [Usage](#usage)
-- [Model Details](#model-details)
 - [Screenshots](#screenshots)
 - [Contributors](#contributors)
 
@@ -15,50 +22,75 @@
 
 ## Description
 
-This project detects the **stage of diabetic retinopathy** using a machine learning model. Users can upload retinal images, and the system predicts one of the following stages:
+VisionGuard predicts the **severity stage of diabetic retinopathy** from an uploaded retinal image. The model classifies each image into one of five stages:
 
-- No Diabetic Retinopathy (Stage 0)
-- Mild Stage
-- Moderate Stage
-- Severe Stage
-- Proliferative Stage
+| Class | Stage |
+|-------|-------|
+| 0 | No Diabetic Retinopathy |
+| 1 | Mild |
+| 2 | Moderate |
+| 3 | Severe |
+| 4 | Proliferative |
 
-The Flask backend serves the model and handles the user interface requests.
+The Flask backend handles image preprocessing and model inference, and the web interface lets users upload an image and view the predicted stage.
+
+---
+
+## Results
+
+<!-- FILL IN with your real numbers from training/validation. Delete any line you do not have. -->
+
+| Metric | Value |
+|--------|-------|
+| Validation accuracy | 92% |
 
 ---
 
 ## Technologies Used
 
-### Backend:
+**Model and data**
 
-- Flask (Python web framework)
-- Machine Learning Libraries: TensorFlow/Keras, Scikit-learn, NumPy, Pandas
+- [FILL IN: TensorFlow/Keras or PyTorch, whichever you used]
+- EfficientNet-B0 (transfer learning)
+- NumPy, Pandas, Scikit-learn
+- OpenCV / PIL for image preprocessing (keep only what you used)
 
-### Frontend:
+**Backend**
 
-- HTML/CSS for structure and styling
-- JavaScript for interactivity and API calls
+- Python, Flask (REST API for preprocessing and inference)
+
+**Frontend**
+
+- HTML, CSS, JavaScript (image upload and API calls)
 
 ---
 
 ## Dataset
 
-The model was trained using the **[APTOS 2019 Blindness Detection Dataset](https://www.kaggle.com/c/aptos2019-blindness-detection)**. The dataset contains thousands of retinal images labeled into 5 classes (stages of retinopathy).
+The model was trained on the [APTOS 2019 Blindness Detection dataset](https://www.kaggle.com/c/aptos2019-blindness-detection), which contains retinal fundus images labelled into 5 severity classes.
 
 ---
 
-## Installation Instructions
+## Model Details
 
-To run this project locally, follow these steps:
+- **Architecture:** EfficientNet-B0 (pretrained on ImageNet, fine-tuned on APTOS 2019)
+- **Framework:** [FILL IN]
+- **Input:** Retinal fundus images resized to [FILL IN, e.g. 224x224] with [FILL IN: your preprocessing steps]
+- **Output:** Classification into 5 severity stages (0 to 4)
+- **Training setup:** [FILL IN: epochs, batch size, optimizer, any augmentation]
+
+---
+
+## Installation
 
 1. Clone this repository:
 
    ```bash
-   git clone <repository-url>
-   cd <project-folder>
+   git clone https://github.com/ggauthamm/VisionGuard.git
+   cd VisionGuard
    ```
 
-2. Create a virtual environment and activate it:
+2. Create and activate a virtual environment:
 
    ```bash
    python -m venv venv
@@ -71,19 +103,20 @@ To run this project locally, follow these steps:
    pip install -r requirements.txt
    ```
 
-4. Ensure you have the pre-trained ML model file (e.g., `model.h5`) in the project directory.
+4. Make sure the trained model file is inside the `model/` folder.
 
 ---
 
 ## Project Structure
 
 ```
-Project/
-│── static/               # CSS, JavaScript, and images
-│── templates/            # HTML files
-│── model/                # Trained ML model file
-│── app.py                # Flask application
-│── requirements.txt      # List of dependencies
+VisionGuard/
+├── static/               # CSS, JavaScript, and images
+├── templates/            # HTML files
+├── model/                # Trained model file
+├── screenshots/          # Screenshots used in this README
+├── app.py                # Flask application
+├── requirements.txt      # Python dependencies
 └── README.md             # Project documentation
 ```
 
@@ -97,56 +130,41 @@ Project/
    python app.py
    ```
 
-2. Open your browser and go to:
+2. Open your browser and go to `http://127.0.0.1:5000/`.
 
-   ```
-   http://127.0.0.1:5000/
-   ```
-
-3. Upload an image of the retina to get predictions.
+3. Upload a retinal image to get a prediction.
 
 ---
 
 ## Usage
 
-1. **Open the Web Interface**  
-   Access the application on your local server.
-
-2. **Upload Image**  
-   Use the upload button to provide a retinal image.
-
-3. **View Prediction**  
-   The system will predict and display the stage of diabetic retinopathy.
-
----
-
-## Model Details
-
-- **Framework**: TensorFlow/Keras
-- **Model Type**: Convolutional Neural Network (CNN)
-- **Input**: Preprocessed retinal images
-- **Output**: Classification into 5 stages
+1. **Open the web interface** on your local server.
+2. **Upload an image** using the upload button.
+3. **View the prediction.** The app displays the predicted stage of diabetic retinopathy.
 
 ---
 
 ## Screenshots
 
-Add screenshots of:
+**Home page**
 
-- The home page.
-  ![home page](/screenshots/home.png)
-- Website
-  ![website](/screenshots/webpage.png)
-- File upload page.
-  ![upload section](/screenshots/diagnosis-section.png)
-- Prediction output.
-  ![output](/screenshots/results.png)
+![Home page](screenshots/home.png)
+
+**Website**
+
+![Website](screenshots/webpage.png)
+
+**Image upload**
+
+![Upload section](screenshots/diagnosis-section.png)
+
+**Prediction output**
+
+![Prediction output](screenshots/results.png)
 
 ---
 
 ## Contributors
 
 - [Bharath C](https://github.com/BharathC050903)
-- [Gautham](https://github.com/ggauthamm)
-
----
+- [Gautham Krishnan](https://github.com/ggauthamm)

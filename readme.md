@@ -42,6 +42,7 @@ The Flask backend handles image preprocessing and model inference, and the web i
 
 | Metric | Value |
 |--------|-------|
+| Training accuracy | 94% |
 | Validation accuracy | 92% |
 
 ---
